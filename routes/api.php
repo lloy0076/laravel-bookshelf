@@ -24,7 +24,8 @@ Route::group(
         'middleware' => [],
     ],
     function () {
-        Route::resource('book', 'BookController');
-        Route::any('{any?}', 'ApiController')->where('any', '.*');
+        Route::resource('/book', 'BookController');
+        Route::any('/ping', 'PingController')->name('api.ping');
+//        Route::any('{any?}', 'ApiController')->where('any', '.*')->name('api.any');
     }
 );

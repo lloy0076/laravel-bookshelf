@@ -17,7 +17,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::orderBy('title')->get();
+        $books = Book::orderBy('id')->get();
         $collection = new BookCollection($books);
 
         return response()->json($collection, 200);
@@ -26,7 +26,7 @@ class BookController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -57,7 +57,7 @@ class BookController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Book  $book
+     * @param \App\Book $book
      * @return \Illuminate\Http\Response
      */
     public function show(Book $book)
@@ -69,8 +69,8 @@ class BookController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Book  $book
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Book $book
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Book $book)
@@ -98,11 +98,18 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Book  $book
-     * @return \Illuminate\Http\Response
+     * @param \App\Book $book
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
     public function destroy(Book $book)
     {
-        //
+        $didDelete = $book->delete();
+
+        if (!$didDelete) {
+            throw new \Exception('Failed to delete book ' . $book->id . '.');
+        }
+
+        return response()->json('ok', 200);
     }
 }
