@@ -14,7 +14,9 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <p>Token:</p>
+
+                    <ul>{{ $token ?? '<no token>' }}</ul>
                 </div>
             </div>
         </div>

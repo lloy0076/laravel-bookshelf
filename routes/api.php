@@ -17,3 +17,15 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(
+    [
+        'prefix' => 'v1',
+        'middleware' => [],
+    ],
+    function () {
+        Route::resource('/book', 'BookController');
+        Route::any('/ping', 'PingController')->name('api.ping');
+//        Route::any('{any?}', 'ApiController')->where('any', '.*')->name('api.any');
+    }
+);

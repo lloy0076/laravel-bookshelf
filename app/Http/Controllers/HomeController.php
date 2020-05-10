@@ -21,8 +21,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+        $user = $request->user();
+        $token = $user->createToken('sanctum');
+        $plainText = $token->plainTextToken;
+
+        return view('home', ['token' => $plainText]);
     }
 }
