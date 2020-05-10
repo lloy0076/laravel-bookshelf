@@ -1,13 +1,20 @@
 <?php
 
-use Illuminate\Support\Facades\Log;
+namespace Tests\Feature;
+
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use App\Book;
 
-use Tests\Unit\CommonData;
+use Tests\CommonData;
 
+/**
+ * Class BookTest
+ *
+ * This is more of a "feature" test in that it calls the API server and parses some of its results; hence it is
+ * testing both the controller(s) and the resource controllers (a little bit - not completely).
+ */
 class BookTest extends TestCase
 {
     use RefreshDatabase;

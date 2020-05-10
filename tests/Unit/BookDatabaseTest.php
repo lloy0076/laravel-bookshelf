@@ -7,6 +7,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
+use Tests\CommonData;
+
 class BookDatabaseTest extends TestCase
 {
     use RefreshDatabase;
