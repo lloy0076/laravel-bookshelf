@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Book;
 use App\Http\Resources\BookCollection;
 use App\Http\Resources\BookResource;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 
 class BookController extends Controller
@@ -13,7 +15,7 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function index()
     {
@@ -26,8 +28,8 @@ class BookController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return JsonResponse
      */
     public function store(Request $request)
     {
@@ -57,8 +59,8 @@ class BookController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Book $book
-     * @return \Illuminate\Http\Response
+     * @param Book $book
+     * @return JsonResponse
      */
     public function show(Book $book)
     {
@@ -69,9 +71,10 @@ class BookController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Book $book
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Book $book
+     * @return JsonResponse
+     * @throws \Exception
      */
     public function update(Request $request, Book $book)
     {
@@ -98,8 +101,8 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Book $book
-     * @return \Illuminate\Http\JsonResponse
+     * @param Book $book
+     * @return JsonResponse
      * @throws \Exception
      */
     public function destroy(Book $book)

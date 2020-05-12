@@ -7,7 +7,7 @@ use Tests\TestCase;
 class PingTest extends TestCase
 {
     /**
-     * A basic unit test example.
+     * Test the ping response.
      *
      * @return void
      */
@@ -20,6 +20,11 @@ class PingTest extends TestCase
         $response->assertSeeText('pong');
     }
 
+    /**
+     * Test the ping response.
+     *
+     * @return void
+     */
     public function testApiPost()
     {
         $response = $this->post('/api/v1/ping');
@@ -29,6 +34,11 @@ class PingTest extends TestCase
         $response->assertSeeText('pong');
     }
 
+    /**
+     * Test the ping response.
+     *
+     * @return void
+     */
     public function testWebPostJson()
     {
         $response = $this->postJson('/ping');
@@ -38,6 +48,11 @@ class PingTest extends TestCase
         $response->assertSeeText('pong');
     }
 
+    /**
+     * Test the ping response.
+     *
+     * @return void
+     */
     public function testWebPost()
     {
         $response = $this->post('/ping');
