@@ -3,6 +3,8 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Collection;
 
+use Tests\CommonData;
+
 class BookSeeder extends Seeder
 {
     /**
@@ -12,25 +14,7 @@ class BookSeeder extends Seeder
      */
     public function run()
     {
-        $books = new Collection([
-            [
-                'id' => 1,
-                'title' => 'The Hunger',
-                'author' => 'Whitley Strieber',
-                'format' => 'paperback',
-            ],
-            [
-                'id' => 2,
-                'title' => 'Kanban - Just-In-Time At Toyota',
-                'author' => 'Japan Managment Association',
-                'format' => 'hardcover',
-            ],
-            [
-                'id' => 3,
-                'title' => 'A Pocket Style Manual',
-                'author' => 'Diana Hacker and Nancy Sommers',
-            ]
-        ]);
+        $books = new Collection(CommonData::$books);
 
         $books->each(function ($book) {
             $didCreate = \App\Book::create($book);
@@ -38,5 +22,16 @@ class BookSeeder extends Seeder
                 throw new \Exception(sprintf('Unable to create book, "%s".',$book['title']));
             }
         });
+
+//        $this->random();
+    }
+
+    /**
+     * Add a certain number of random entries.
+     *
+     * @param int $num
+     */
+    public function random($num = 25) {
+        factory(\App\Book::class, $num)->create();
     }
 }
